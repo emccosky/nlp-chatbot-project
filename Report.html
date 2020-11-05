@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="music-recommendation-chatbot">Music Recommendation Chatbot</h1>
+<h2 id="ethan-mccosky"><em>Ethan McCosky</em></h2>
+<h3 id="introduction">INTRODUCTION</h3>
+<p>The purpose of this chatbot project is to create a chatbot to demonstrate NLP principles. The chatbot is named Orpheus, after the Ancient Greek mythical hero musician. The vision for the chatbot was to create a natural language interface for learning about a user's musical preferences. The completed version of the chatbot at this time is able to learn about a user's music tastes and recommend additional songs the user might enjoy. This is accomplished through connection to the Spotify API. Originally, I had wanted to expand on this further and construct a model of a detailed custom user's preferences that ask the user why they liked certain songs to determine taste drivers across varying taste clusters. However, due to the underestimated complexity of creating a chatbot from scratch in Python, those advanced features were moved out of the definition of MVP and are reserved for later development, most likely part of a different project focused on analysis and with a more visual interface.</p>
+<h3 id="nlp-techniques">NLP TECHNIQUES</h3>
+<p>The chatbot is built using several NLP techniques. These can best be described by explaining how the chatbot works. The corpus for the chatbot is an JSON file that describes user intents and has sample things a user may say to signify that intent. A sample of the file is shown below, the full data can be found in intents.json.</p>
+<pre class="hljs"><code><div><span class="hljs-string">"intents"</span>: [
+  {
+   <span class="hljs-attr">"tag"</span>: <span class="hljs-string">"greeting"</span>,
+   <span class="hljs-attr">"patterns"</span>: [
+    <span class="hljs-string">"Hi there"</span>,
+    <span class="hljs-string">"How are you"</span>,
+    <span class="hljs-string">"Hey"</span>,
+    <span class="hljs-string">"Good day"</span>,
+    <span class="hljs-string">"hi"</span>,
+    <span class="hljs-string">"hello"</span>,
+    <span class="hljs-string">"yo"</span>
+   ],
+   <span class="hljs-attr">"responses"</span>: [
+    <span class="hljs-string">"Hello, I am Orpheus, a Music reccomendation bot."</span>,
+    <span class="hljs-string">"What would you like to do today?"</span>,
+    <span class="hljs-string">"Hi there, how can I help?"</span>
+   ],
+   <span class="hljs-attr">"context"</span>: <span class="hljs-string">"general"</span>
+  },
+
+  ...
+
+  {
+   <span class="hljs-attr">"tag"</span>: <span class="hljs-string">"recommend_music"</span>,
+   <span class="hljs-attr">"patterns"</span>: [
+    <span class="hljs-string">"What music should I listen to?"</span>,
+    <span class="hljs-string">"what music would you recommend?"</span>,
+    <span class="hljs-string">"what songs do you recommend?"</span>,
+    <span class="hljs-string">"what do you recommend?"</span>,
+    <span class="hljs-string">"What would I like"</span>,
+    <span class="hljs-string">"can you recommend a song to me"</span>,
+    <span class="hljs-string">"can you recommend me music"</span>,
+    <span class="hljs-string">"what else would I like"</span>,
+    <span class="hljs-string">"I dont know what to listen to"</span>,
+    <span class="hljs-string">"I want to find new music"</span>
+   ],
+   <span class="hljs-attr">"responses"</span>: [],
+   <span class="hljs-attr">"context"</span>: <span class="hljs-string">"hydrated"</span>
+  }
+ ]
+}
+</div></code></pre>
+<p>From the intents file, documents are built consisting of all of the pattern phrases. These documents are then fed into an sklearn TfidfVectorizer. Next, cosine similarity is computed between the user's query and each document in the corpus to find probabilities that the query falls into each intent. Earlier iterations of the chatbot design attempted to use a Keras Neural network, however, the simple bag of words approach to creating that training data proved to be unsuccessful at correctly predicting intent. The code for this can be found in the <code>training_keras.ipynb</code> notebook.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> sklearn.feature_extraction.text <span class="hljs-keyword">import</span> TfidfVectorizer
+tfidf_vectorizer = TfidfVectorizer()
+<span class="hljs-keyword">from</span> sklearn.metrics.pairwise <span class="hljs-keyword">import</span> cosine_similarity
+
+documents_raw = [d[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> documents]
+
+query = <span class="hljs-string">"what can you do"</span>
+documents_raw.append(query)
+
+tfidf_docs = tfidf_vectorizer.fit_transform(documents_raw)
+
+arr = list(cosine_similarity(tfidf_docs[<span class="hljs-number">-1</span>], tfidf_docs)[<span class="hljs-number">0</span>][:<span class="hljs-number">-1</span>])
+
+</div></code></pre>
+<p>For the query <code>&quot;what can you do&quot;</code> tested above, the resulting probabilities are</p>
+<pre class="hljs"><code><div>0.06942139602513236
+0.07190573158174676
+0.09652389999247564
+0.5536496060195553
+0.0
+0.5536496060195553
+0.2512911794704487
+0.28464084359130293
+0.37484630309320416
+0.42479359410902484
+</div></code></pre>
+<p>You may notice that the query is equally probable to belong to the 4th and 6th intents, which if you look are built from the same patterns.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"tag"</span>: <span class="hljs-string">"options"</span>,
+   <span class="hljs-attr">"patterns"</span>: [
+    <span class="hljs-string">"How you could help me?"</span>,
+    <span class="hljs-string">"What can you do?"</span>,
+    <span class="hljs-string">"What help you provide?"</span>,
+    <span class="hljs-string">"How you can be helpful?"</span>,
+    <span class="hljs-string">"What support is offered"</span>,
+    <span class="hljs-string">"What options do you have?"</span>,
+    <span class="hljs-string">"help"</span>,
+    <span class="hljs-string">"help me"</span>,
+    <span class="hljs-string">"instructions"</span>,
+    <span class="hljs-string">"huh"</span>
+   ],
+   <span class="hljs-attr">"responses"</span>: [
+    <span class="hljs-string">"I can guide you through connecting to spotify, after which I'll be able to learn your top artists or tracks."</span>
+   ],
+   <span class="hljs-attr">"context"</span>: <span class="hljs-string">"main"</span>
+  },
+
+...
+
+  {
+   <span class="hljs-attr">"tag"</span>: <span class="hljs-string">"options_2"</span>,
+   <span class="hljs-attr">"patterns"</span>: [
+    <span class="hljs-string">"How you could help me?"</span>,
+    <span class="hljs-string">"What can you do?"</span>,
+    <span class="hljs-string">"What help you provide?"</span>,
+    <span class="hljs-string">"How you can be helpful?"</span>,
+    <span class="hljs-string">"What support is offered"</span>,
+    <span class="hljs-string">"What options do you have?"</span>,
+    <span class="hljs-string">"help"</span>,
+    <span class="hljs-string">"help me"</span>,
+    <span class="hljs-string">"instructions"</span>,
+    <span class="hljs-string">"huh"</span>
+   ],
+   <span class="hljs-attr">"responses"</span>: [
+    <span class="hljs-string">"Now that you've authenticated with Spotify, I can tell you about your listening preferences including top tracks and top artists. I can also reccomend songs you might like!"</span>
+   ],
+   <span class="hljs-attr">"context"</span>: <span class="hljs-string">"hydrated"</span>
+  },
+</div></code></pre>
+<p>The difference between these two intents is the context. The first intent has the context <code>main</code> and is only valid before the user has connected to spotify, whereas the second intent has the context <code>hydrated</code> and is only valid after the user preferences have been hydrated from Spotify. (see User model below) Intents with the <code>general</code> context are valid at all times.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span>:</span>
+
+    name: str
+    spotify_username: str
+    genre_prefs: typing.List[bool]
+    artist_likes: typing.List[str]
+    song_likes: typing.List[str]
+
+    <span class="hljs-comment"># Ideally these would be part of a track/artist object but for now are separate</span>
+    <span class="hljs-comment"># because they are only used for recommendation seeding</span>
+    artist_ids: typing.List[str]
+    song_ids: typing.List[str]
+</div></code></pre>
+<h3 id="program-flow">PROGRAM FLOW</h3>
+<p>Contexts are used to control the flow of the program and limit the available intents to classify the user query into based on the chatbot state. The diagram below represents a simplified version of the program flow model.</p>
+<p><img src="flow.jpg?raw=true" alt="PROGRAM FLOW" title="Program Flow Diagram"></p>
+<h3 id="sample-interaction">SAMPLE INTERACTION</h3>
+<p>The following is sample interaction with the chatbot and shows working usage of the chatbot.</p>
+<pre class="hljs"><code><div>[19:29:14] D:\..\..\..\chatbot venv37
+❯ &amp; &quot;d:/DEV/Class/CS4395 NLP/chatbot/venv37/Scripts/python.exe&quot; &quot;d:/DEV/Class/CS4395 NLP/chatbot/bot_new.py&quot;
+
+[ORPHEUS] Hello, I am Orpheus, a Music reccomendation bot. What is your name?
+:: Ethan
+[ORPHEUS] Welcome back, ethan!
+:: Hello bot!
+[ORPHEUS] What would you like to do today?
+:: What can you do
+[ORPHEUS] I can guide you through connecting to spotify, after which I'll be able to learn your top artists or tracks.
+:: ok, connect to spotify
+[ORPHEUS] Connecting to Spotify and populating data from account emccoskymusic
+[ORPHEUS] connected
+:: what can you do now
+[ORPHEUS] Now that you've authenticated with Spotify, I can tell you about your listening preferences including top tracks and top artists. I can also reccomend songs you might like!
+:: what songs do i like?
+[ORPHEUS] Your top tracks are:
+
+1. Title: Icarus (feat. Ari Lennox) Artist: Bas
+2. Title: Cancel Me Artist: Dominic Fike
+3. Title: Front Desk Artist: Bas
+4. Title: Futura Free Artist: Frank Ocean
+5. Title: Thank You Artist: Florist
+6. Title: trix Artist: whiterosemoxie
+7. Title: Self Control Artist: Frank Ocean
+8. Title: Clouds Never Get Old Artist: Bas
+9. Title: The Dreamer (feat. Talib Kweli &amp; Timan Family Choir) Artist: Anderson .Paak
+10. Title: Purge Artist: Bas
+
+:: thanks!
+[ORPHEUS] My pleasure
+:: what are my top artists?
+[ORPHEUS] Your top artists are:
+
+1. Tom Rosenthal
+2. Drake
+3. Florist
+4. Mac Miller
+5. Flatsound
+6. Kendrick Lamar
+7. Kanye West
+8. Iron &amp; Wine
+9. Tyler, The Creator
+10. Bon Iver
+
+:: awesome!
+[ORPHEUS] My pleasure
+:: can you recommend me some more music?
+[ORPHEUS]
+Here's some songs you might like:
+Title: Throw the Fear Artist: Tom Rosenthal
+Title: Ocean Girl Artist: L'aupaire
+Title: Double Up (feat. Belly and Dom Kennedy) Artist: Nipsey Hussle
+Title: About The Weather Artist: Tom Rosenthal
+Title: For You To Be Here Artist: Tom Rosenthal
+:: thanks!
+[ORPHEUS] Happy to help!
+:: goodbye!
+[ORPHEUS] Bye! Come back again soon.
+
+[19:31:07] D:\..\..\..\chatbot venv37
+❯
+</div></code></pre>
+<h3 id="usage">USAGE</h3>
+<p>To use the bot, simply run <code>bot_new.py</code>. The needed model information has already been pickled and is included. If you wanted to reanalyze the data, you could do so by running all the cells in <code>training_sklearn.ipynb</code></p>
+<p>A few notes:
+The Spotify API and python library <code>Spotipy</code> is very weird about authentication and sometimes incorrectly caches authorization and refresh tokens. Upon first run, a browser window should open, asking you to login to Spotify and grant the application access to your account data. (Don't worry, it is not being collected in any manner) Sometimes this will cause a program error, but a rerun of the program should connect successfully. (with the same name so the bot recognizes you)</p>
+<h3 id="evaluation-and-conclusions">EVALUATION AND CONCLUSIONS</h3>
+<p>Throughout the course of this project many difficulties were encountered, leading to the conclusion that building a chatbot is quite difficult and complex. The chatbot is quite limited in functionality in its current version, however would not be particularly difficult to scale to support more intents. Future exansion of this could include more usage of the Spotify API or even connection to additional datasources such as Wikipedia for artist biographical information. Critical reviews of music could also be fed in to give the bot a knowledge base upon which to discuess music with the user. Some of my biggest takeaways from the project is that python is a difficult language to build complex things in and I frequently found myself painstakingly debugging type errors.</p>
+<p>Overall, the chatbot accomplishes the goal of providing a natural language based interface to learn user music preferences and acts as a simple interface for the Spotify API.</p>
+
+</body>
+</html>

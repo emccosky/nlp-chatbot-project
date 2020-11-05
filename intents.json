@@ -1,0 +1,175 @@
+{
+	"intents": [
+		{
+			"tag": "greeting",
+			"patterns": [
+				"Hi there",
+				"How are you",
+				"Hey",
+				"Good day",
+				"hi",
+				"hello",
+				"yo"
+			],
+			"responses": [
+				"Hello, I am Orpheus, a Music reccomendation bot.",
+				"What would you like to do today?",
+				"Hi there, how can I help?"
+			],
+			"context": "general"
+		},
+		{
+			"tag": "goodbye",
+			"patterns": [
+				"Bye",
+				"See you later",
+				"Goodbye",
+				"Till next time",
+				"Quit",
+				"peace out"
+			],
+			"responses": [
+				"See you!",
+				"Have a nice day",
+				"Bye! Come back again soon.",
+				"Thanks for chatting!"
+			],
+			"context": "general"
+		},
+		{
+			"tag": "thanks",
+			"patterns": [
+				"Thanks",
+				"Thank you",
+				"That's helpful",
+				"Awesome, thanks",
+				"Thanks for helping me",
+				"appreciate it",
+				"good call",
+				"thank you"
+			],
+			"responses": ["Happy to help!", "Any time!", "My pleasure"],
+			"context": "general"
+		},
+		{
+			"tag": "options",
+			"patterns": [
+				"How you could help me?",
+				"What can you do?",
+				"What help you provide?",
+				"How you can be helpful?",
+				"What support is offered",
+				"What options do you have?",
+				"help",
+				"help me",
+				"instructions",
+				"huh"
+			],
+			"responses": [
+				"I can guide you through connecting to spotify, after which I'll be able to learn your top artists or tracks."
+			],
+			"context": "main"
+		},
+		{
+			"tag": "connect_spotify",
+			"patterns": [
+				"Connect to Spotify",
+				"Login",
+				"sign in to spotify",
+				"spotify",
+				"open spotify",
+				"get spotify data",
+				"pull data"
+			],
+			"responses": ["Connecting to Spotify and populating data"],
+			"context": "general"
+		},
+		{
+			"tag": "options_2",
+			"patterns": [
+				"How you could help me?",
+				"What can you do?",
+				"What help you provide?",
+				"How you can be helpful?",
+				"What support is offered",
+				"What options do you have?",
+				"help",
+				"help me",
+				"instructions",
+				"huh"
+			],
+			"responses": [
+				"Now that you've authenticated with Spotify, I can tell you about your listening preferences including top tracks and top artists. I can also reccomend songs you might like!"
+			],
+			"context": "hydrated"
+		},
+		{
+			"tag": "top_artists",
+			"patterns": [
+				"What artists do I like?",
+				"My top artists",
+				"What are my top artists",
+				"What artists do I listen to the most",
+				"Who are my favorite artists",
+				"Who are my favorite musicians",
+				"What musicians do I like",
+				"What acts do I enjoy listening to?"
+			],
+			"responses": [],
+			"context": "hydrated"
+		},
+		{
+			"tag": "top_tracks",
+			"patterns": [
+				"What tracks do I like?",
+				"What songs do I like?",
+				"My top tracks",
+				"What are my top tracks",
+				"My top songs",
+				"What are my top songs",
+				"What songs do I listen to the most",
+				"what are my favorite tracks",
+				"what are my favorite songs",
+				"What tracks do I enjoy listening to?",
+				"What songs do I enjoy listening to?"
+			],
+			"responses": [],
+			"context": "hydrated"
+		},
+		{
+			"tag": "listening_preferences",
+			"patterns": [
+				"What music do I like?",
+				"What music do I enjoy listening to?",
+				"What do I enjoy listening to?",
+				"My top music",
+				"What do I listen to",
+				"What do I like",
+				"What do I listen to the most",
+				"what is my favorite music",
+				"what are my music tastes",
+				"what are my listening preferences",
+				"what are my musical preferences"
+			],
+			"responses": [],
+			"context": "hydrated"
+		},
+		{
+			"tag": "recommend_music",
+			"patterns": [
+				"What music should I listen to?",
+				"what music would you recommend?",
+				"what songs do you recommend?",
+				"what do you recommend?",
+				"What would I like",
+				"can you recommend a song to me",
+				"can you recommend me music",
+				"what else would I like",
+				"I dont know what to listen to",
+				"I want to find new music"
+			],
+			"responses": [],
+			"context": "hydrated"
+		}
+	]
+}
